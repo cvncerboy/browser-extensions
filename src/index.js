@@ -25,11 +25,6 @@ function calculateColor(value) {
 	console.log(value + ' is closest to ' + closestNum);
 	let num = (element) => element > closestNum;
 	let scaleIndex = co2Scale.findIndex(num);
-
-	let closestColor = colors[scaleIndex];
-	console.log(scaleIndex, closestColor);
-
-	chrome.runtime.sendMessage({ action: 'updateIcon', value: { color: closestColor } });
 }
 
 
@@ -89,14 +84,6 @@ const init = async () => {
 	//if anything is in localStorage, pick it up
 	const storedApiKey = localStorage.getItem('apiKey');
 	const storedRegion = localStorage.getItem('regionName');
-
-	//set icon to be generic green
-	chrome.runtime.sendMessage({
-		action: 'updateIcon',
-		value: {
-			color: 'green',
-		},
-	});
 
 	if (storedApiKey === null || storedRegion === null) {
 		//if we don't have the keys, show the form
